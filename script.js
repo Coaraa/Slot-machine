@@ -5,6 +5,7 @@ const TIME_PER_ICON = 100;
 
 const INDEXES = [0, 0, 0];
 const ICONS_MAP = ["cherry", "diamond", "plum", "seven", "apple", "grape", "clover", "bar", "lemon", "orange"];
+let rollings = false;
 
 const roll = (reel, offset = 0) => {
     const delta = (offset + 2) * NUM_ICONS + Math.round(Math.random() * NUM_ICONS);
@@ -26,8 +27,11 @@ const roll = (reel, offset = 0) => {
 };
 
 function rollAll () {
+    if (rollings) return;
+    rollings = true;
     const reelsList = document.querySelectorAll('.slots > .reel');
 
+    
     Promise.all([...reelsList].map((reel, index) => roll(reel, index)))
         .then((deltas) => {
             deltas.forEach((delta, index) => {
@@ -37,9 +41,13 @@ function rollAll () {
                 console.log(ICONS_MAP[index]);
             }))
 
+            rollings = false;
             // setTimeout(rollAll, 3000);
         });
+    
+    
 
 }
 
-rollAll();
+const spinButton = document.getElementById('spin-button');
+spinButton.addEventListener('click', rollAll);

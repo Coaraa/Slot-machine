@@ -1,6 +1,6 @@
 :root {
     --icon-witdh: 100px;
-    --icon-height: 87px;
+    --icon-height: 150px;
     --num-icons: 10;
 }
 
@@ -10,16 +10,24 @@
     box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #c59090;
 }
 
 body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 3rem;
+    user-select: none;
 }
 
 .slots {
@@ -40,6 +48,26 @@ body {
     background-repeat: repeat-y;
     background-position: 0 0;
 }
+
+button {
+    font-family: monospace;
+    font-size: 1.5rem;
+    color: #FAFAFA;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #FAFAFA;
+    background: #c59090;
+    box-shadow: 3px 3px #fafafa;
+    cursor: pointer;
+    margin: 35px 0;
+  }
+  
+  button:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+  }
+
 
 .image {
     position: fixed;
