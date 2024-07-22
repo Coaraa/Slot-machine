@@ -1,0 +1,50 @@
+:root {
+    --icon-witdh: 100px;
+    --icon-height: 87px;
+    --num-icons: 10;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slots {
+    width: calc(var(--icon-witdh) * 4);
+    height: calc(var(--icon-height) * 3.6);
+    padding: calc(var(--icon-height) * 0.3);
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reel {
+    border: 1px solid red;
+    width: var(--icon-witdh);
+    height: calc(var(--icon-height) * 3);
+    background-image: url("symbols.png");
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: 0 0;
+}
+
+.image {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: auto;
+}
