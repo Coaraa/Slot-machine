@@ -1,8 +1,17 @@
 :root {
-    --icon-witdh: 100px;
+    --icon-witdh: 150px;
     --icon-height: 150px;
     --num-icons: 10;
+    --dark-blue: #162f4d;
+    --blue: #405D72;
+    --light-blue: #758694;
+    --beige: #F7E7DC;
+    --light-beige: #FFF8F3;
+    --red: #cc3d3d;
+    --gray: #b4b7bd;
 }
+
+/* RESET */
 
 * {
     margin: 0;
@@ -10,11 +19,12 @@
     box-sizing: border-box;
 }
 
+/* MAIN STYLES */
+
 html,
 body {
-    height: 100%;
     font-family: 'Roboto', sans-serif;
-    background-color: #c59090;
+    background-color: var(--blue);
 }
 
 body {
@@ -22,57 +32,168 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position : relative;
 }
 
 h1 {
     font-size: 4rem;
-    margin-bottom: 3rem;
+    color: var(--beige);
+    text-transform: uppercase;
+    margin: 3rem 0;
     user-select: none;
+    text-align: center;
+}
+
+
+/* WIN CONDITIONS */
+
+.win-conditions {
+    width: 500px;
+    height: 80vh;
+    text-align: center;
+    padding: 2rem;
+    color: var(--blue);
+    background-color: var(--gray);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position : absolute;
+    top: 20%;
+    left: -450px;
+    z-index: 1000;
+}
+
+.text {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+h2 {
+    font-size: 2rem;
+    margin: 1rem 0;
+    text-transform: uppercase;
+    position: absolute;
+    top : 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.rules {
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button#close-button {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    font-family: monospace;
+    font-size: 3rem;
+    color: var(--light-beige);
+    background-color: transparent;
+    cursor: pointer;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: none;
+    margin-right: -2rem;
+}
+
+button#open-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    font-family: monospace;
+    font-size: 3rem;
+    color: var(--light-beige);
+    background-color: transparent;
+    cursor: pointer;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: none;
+    margin-right: -2rem;
+}
+
+
+/* SLOT MACHINE */
+
+.machine {
+    width: 60%;
+    height: 100%;
+    background-color: #b4b7bd;
+    border-radius: 20px;
+    border: 3px solid var(--light-blue);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .slots {
     width: calc(var(--icon-witdh) * 4);
-    height: calc(var(--icon-height) * 3.6);
-    padding: calc(var(--icon-height) * 0.3);
-    border: 1px solid black;
+    height: calc(var(--icon-height) * 3.4);
+    padding: calc(var(--icon-height) * 0.2);
+    border: 3px solid var(--light-blue);
+    border-radius: 20px;
+    background-color: var(--beige);
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .reel {
-    border: 1px solid red;
     width: var(--icon-witdh);
     height: calc(var(--icon-height) * 3);
+    background-color: var(--light-beige);
     background-image: url("symbols.png");
-    background-size: cover;
     background-repeat: repeat-y;
     background-position: 0 0;
+    border-radius: 10px;
+    box-shadow: 1px 1px var(--light-blue);
+    position: inherit;
+    z-index: 100;
 }
 
-button {
+.indicator {
+    width: 95%;
+    height: 5px;
+    padding: 0 1rem;
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    z-index: 1;
+    background-color: var(--red);
+}
+
+button#spin-button {
     font-family: monospace;
     font-size: 1.5rem;
-    color: #FAFAFA;
+    color: var(--light-beige);
     text-transform: uppercase;
     padding: 10px 20px;
     border-radius: 10px;
-    border: 2px solid #FAFAFA;
-    background: #c59090;
-    box-shadow: 3px 3px #fafafa;
+    border: 2px solid var(--light-beige);
+    background: var(--light-blue);
+    box-shadow: 3px 3px var(--light-beige);
     cursor: pointer;
-    margin: 35px 0;
-  }
-  
-  button:active {
+    margin: 35px 0 0; 
+}
+
+button:active#spin-button {
     box-shadow: none;
     transform: translate(3px, 3px);
-  }
-
-
-.image {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    width: auto;
 }

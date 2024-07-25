@@ -1,21 +1,63 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Slot machine</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
     <h1>Slot machine</h1>
-    <div class="slots">
-        <div class="reel"></div>
-        <div class="reel"></div>
-        <div class="reel"></div>
+
+    <div class="win-conditions">
+        <div class="text">
+            <h2>Game win conditions</h2>
+            <div class="rules">
+                <p>3x cherry/lemon/orange/grape/apple/plum = 15x bet</p>
+                <p>3x clover = 25x bet</p>
+                <p>3x diamond = 50x bet</p>
+                <p>3x 7 = 150x bet</p>
+                <p>3x BAR = 250x bet</p>
+
+                <p>2x any symbol = 3x bet</p>
+            </div>
+            <button id="close-button" onclick="closeMenu()">←</button>
+            <button id="open-button" onclick="showMenu()">→</button>
+        </div>
+
     </div>
 
-    <button id="spin-button">Play 1€</button>
+    <div class="machine">
+        <div class="slots">
+            <div class="reel"></div>
+            <div class="reel"></div>
+            <div class="reel"></div>
+            <div class="indicator"></div>
+        </div>
 
-    <img src="symbols.png" class="image" alt="">
+        <button id="spin-button">Play 1€</button>
+    </div>
 
     <script src="script.js"></script>
+    <script>
+        const menu = document.querySelector('.win-conditions');
+        const menuCloseButton = document.querySelector('#close-button');
+        const menuOpenButton = document.querySelector('#open-button');
+
+        function showMenu() {
+            menu.style.transition = 'transform 0.5s ease-in-out';
+            menu.style.transform = 'translate(450px, 0)';
+            menuCloseButton.style.display = 'block';
+            menuOpenButton.style.display = 'none';
+        }
+
+        function closeMenu() {
+            menu.style.transition = 'transform 0.5s ease-in-out';
+            menu.style.transform = 'translate(0)';
+            menuCloseButton.style.display = 'none';
+            menuOpenButton.style.display = 'block';
+        }
+    </script>
 </body>
+
 </html>
