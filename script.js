@@ -11,15 +11,31 @@ const roll = (reel, offset = 0) => {
     const style = getComputedStyle(reel),
         backgroundPositionY = parseFloat(style['background-position-y']);
     targetBackgroundPositionY = backgroundPositionY + delta * ICON_HEIGHT;
-    normalisedBackgroundPositionY = targetBackgroundPositionY % (NUM_ICONS * ICON_HEIGHT);
+
+    const circle = document.getElementById('circle');
+    const stick = document.getElementById('stick');
 
     return new Promise((resolve, reject) => {
         reel.style.transition = `background-position-y ${8 + delta * TIME_PER_ICON}ms cubic-bezier(0.45, 0.05, 0.58, 1.09)`;
         reel.style.backgroundPositionY = `${targetBackgroundPositionY}px`;
 
+        circle.style.transform = `translateY(${ICON_HEIGHT}px) scale(1.2)`;
+        circle.style.transition = `transform 1.2s ease-in-out`;
+        stick.style.transform = `scaleY(0)`;
+        stick.style.transition = `transform 0.9s ease-in-out`;
+
+        circle.addEventListener('transitionend', () => {
+            circle.style.transform = `translateY(-50%)`;
+            circle.style.transition = `transform 1.2s`;
+        });
+
+        stick.addEventListener('transitionend', () => {
+            stick.style.transform = `scaleY(1)`;
+            stick.style.transition = `transform 0.9s`;
+            stick.style.transitionDelay = `0.5s`;
+        });
+
         setTimeout(() => {
-            // reel.style.transition = 'none';
-            // reel.style.backgroundPositionY = `${normalisedBackgroundPositionY}px`; 
             resolve(delta % NUM_ICONS);
         }, 8 + delta * TIME_PER_ICON);
     });
@@ -82,7 +98,6 @@ function rollAll() {
     if (rollings) return;
     rollings = true;
     const reelsList = document.querySelectorAll('.slots > .reel');
-
 
     Promise.all([...reelsList].map((reel, index) => roll(reel, index)))
         .then((deltas) => {
