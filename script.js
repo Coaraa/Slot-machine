@@ -30,26 +30,50 @@ function checkWin(bet) {
     const second = INDEXES[1];
     const third = INDEXES[2];
 
-    if (first === second && second === third && first == 4) {
-        // BAR
-        console.log("You win! " + ICONS_MAP[first] + " 250 x " + bet + " = " + 250 * bet);
-    }else if (first === second && second === third && first == 8) {
-        // Seven
-        console.log("You win! " + ICONS_MAP[first] + " 150 x " + bet + " = " + 150 * bet);
-    } else if (first === second && second === third && first == 0) {
-        // Diamond
-        console.log("You win! " + ICONS_MAP[first] + " 50 x " + bet + " = " + 50 * bet);
-    } else if (first === second && second === third && first == 5) {
-        // Clover
-        console.log("You win! " + ICONS_MAP[first] + " 25 x " + bet + " = " + 25 * bet);
-    } else if (first === second && second === third) {
-        // Any fruit
-        console.log("You win! " + ICONS_MAP[first] + " 15 x " + bet + " = " + 15 * bet);
-    } else if (first === second || second === third || first === third) {
-        // Any two
-        console.log("You win! Any two 3 x " + bet + " = " + 3 * bet);
+    if (first === second && second === third) {
+        if (first === 4) {
+            Swal.fire({
+                icon: "success",
+                title: "You win! BAR 250 x " + bet + " = " + 250 * bet,
+                showConfirmButton: false,
+                timer: 3000
+              });
+        } else if (first === 8) {
+            Swal.fire({
+                icon: "success",
+                title: "You win! Seven 150 x " + bet + " = " + 150 * bet,
+                showConfirmButton: false,
+                timer: 3000
+              });
+        } else if (first === 0) {
+            Swal.fire({
+                icon: "success",
+                title: "You win! Diamond 50 x " + bet + " = " + 50 * bet,
+                showConfirmButton: false,
+                timer: 3000
+              });
+        } else if (first === 5) {
+            Swal.fire({
+                icon: "success",
+                title: "You win! Clover 25 x " + bet + " = " + 25 * bet,
+                showConfirmButton: false,
+                timer: 3000
+              });
+        } else {
+            Swal.fire({
+                icon: "success",
+                title: "You win! " + ICONS_MAP[first] + " 15 x " + bet + " = " + 15 * bet,
+                showConfirmButton: false,
+                timer: 3000
+                });
+        }
     } else {
-        console.log("You lose!");
+        Swal.fire({
+            icon: "error",
+            title: "You lose!",
+            showConfirmButton: false,
+            timer: 3000
+            });
     }
         
 }
