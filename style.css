@@ -17,6 +17,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 /* MAIN STYLES */
@@ -136,6 +137,7 @@ button#open-button {
     align-items: center;
     justify-content: center;
     position: relative;
+    margin-bottom: 1rem;
 }
 
 .machine {
@@ -148,6 +150,7 @@ button#open-button {
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    position: relative;
 }
 
 .slots {
@@ -204,6 +207,29 @@ button#spin-button {
 button:active#spin-button {
     box-shadow: none;
     transform: translate(3px, 3px);
+}
+
+.bet {
+    position: absolute;
+    bottom: calc(2.75rem + 5px);
+    left: 2rem;
+}
+
+label {
+    font-size: 1.2rem;
+    color: var(--blue);
+    margin-right: 0.5rem;
+}
+
+input {
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: var(--blue);
+    padding: 5px;
+    border: 2px solid var(--blue);
+    border-radius: 5px;
+    text-align: center;
+    background-color: var(--light-beige);
 }
 
 /* LEVER */

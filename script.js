@@ -4,7 +4,13 @@ const TIME_PER_ICON = 100;
 
 const INDEXES = [0, 0, 0];
 const ICONS_MAP = ["diamond", "cherry", "lemon", "orange", "bar", "clover", "grape", "apple", "seven", "plum"];
+
 let rollings = false;
+var wallet = 11;
+
+function updateWallet() {
+    document.getElementById('wallet').textContent = wallet;
+}
 
 const roll = (reel, offset = 0) => {
     const delta = (offset + 2) * NUM_ICONS + Math.round(Math.random() * NUM_ICONS);
@@ -48,67 +54,120 @@ function checkWin(bet) {
 
     if (first === second && second === third) {
         if (first === 4) {
+            wallet += 250 * bet;
             Swal.fire({
                 icon: "success",
                 title: "You win! BAR 250 x " + bet + " = " + 250 * bet,
                 showConfirmButton: false,
                 timer: 3000
-              });
+            });
         } else if (first === 8) {
+            wallet += 200 * bet;
             Swal.fire({
                 icon: "success",
                 title: "You win! Seven 150 x " + bet + " = " + 150 * bet,
                 showConfirmButton: false,
                 timer: 3000
-              });
+            });
         } else if (first === 0) {
+            wallet += 50 * bet;
             Swal.fire({
                 icon: "success",
                 title: "You win! Diamond 50 x " + bet + " = " + 50 * bet,
                 showConfirmButton: false,
                 timer: 3000
-              });
+            });
         } else if (first === 5) {
+            wallet += 25 * bet;
             Swal.fire({
                 icon: "success",
                 title: "You win! Clover 25 x " + bet + " = " + 25 * bet,
                 showConfirmButton: false,
                 timer: 3000
-              });
+            });
         } else {
+            wallet += 15 * bet;
             Swal.fire({
                 icon: "success",
                 title: "You win! " + ICONS_MAP[first] + " 15 x " + bet + " = " + 15 * bet,
                 showConfirmButton: false,
                 timer: 3000
-                });
+            });
         }
     } else {
+        wallet -= bet;
         Swal.fire({
             icon: "error",
             title: "You lose!",
             showConfirmButton: false,
             timer: 3000
-            });
+        });
     }
-        
 }
 
 function rollAll() {
     if (rollings) return;
     rollings = true;
-    const reelsList = document.querySelectorAll('.slots > .reel');
 
-    Promise.all([...reelsList].map((reel, index) => roll(reel, index)))
-        .then((deltas) => {
-            deltas.forEach((delta, index) => {
-                INDEXES[index] = (INDEXES[index] + delta) % NUM_ICONS;
-            });
-
-            checkWin(1);
-
-            rollings = false;
+    const bet = document.getElementById('bet');
+    bet.readOnly = true;
+    if (bet.value <= 0 || bet.value > 10) {
+        Swal.fire({
+            icon: "error",
+            title: "Invalid bet! Please enter a value between 1 and 10",
+            showConfirmButton: true,
+            confirmButtonText: "OK",
+            timer: 3000
         });
+        rollings = false;
+        bet.readOnly = false;
+        return;
+    }
+    if (bet.value > wallet) {
+        if (wallet <= 0) {
+            Swal.fire({
+                icon: "error",
+                title: "Insufficient funds!",
+                showConfirmButton: true,
+                confirmButtonText: "Retry",
+                timer: 3000
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    bet.readOnly = false;
+                    rollings = false;
+                    wallet = 100;
+                    updateWallet();
+                    return;
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Insufficient funds!",
+                showConfirmButton: true,
+                confirmButtonText: "OK",
+                timer: 3000
+            });
+        }
+    rollings = false;
+    bet.readOnly = false;
+    return;
+}
+
+const reelsList = document.querySelectorAll('.slots > .reel');
+
+Promise.all([...reelsList].map((reel, index) => roll(reel, index)))
+    .then((deltas) => {
+        deltas.forEach((delta, index) => {
+            INDEXES[index] = (INDEXES[index] + delta) % NUM_ICONS;
+        });
+
+        checkWin(bet.value);
+        updateWallet();
+
+        rollings = false;
+        bet.readOnly = false;
+    });
 }
 
 const spinButton = document.getElementById('spin-button');

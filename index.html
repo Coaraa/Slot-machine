@@ -18,6 +18,8 @@
                 <p>3x diamond = 50x bet</p>
                 <p>3x 7 = 150x bet</p>
                 <p>3x BAR = 250x bet</p>
+
+                <p>Your wallet is currently <span id="wallet">100</span> €</p>
             </div>
             <button id="close-button" onclick="closeMenu()">←</button>
             <button id="open-button" onclick="showMenu()">→</button>
@@ -34,7 +36,12 @@
                 <div class="indicator"></div>
             </div>
 
-            <button id="spin-button">Play 1€</button>
+            <div class="bet">
+                <label for="bet">Your bet:</label>
+                <input type="number" id="bet" value="1" min="1" max="10">
+            </div>
+
+            <button id="spin-button">Play</button>
         </div>
 
         <div class="lever">
