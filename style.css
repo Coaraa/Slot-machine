@@ -2,14 +2,21 @@
     --icon-witdh: 150px;
     --icon-height: 150px;
     --num-icons: 10;
-    --dark-blue: #162f4d;
-    --blue: #405D72;
     --light-blue: #758694;
     --beige: #F7E7DC;
     --light-beige: #FFF8F3;
     --red: #cc3d3d;
-    --gray: #b4b7bd;
+    --light-gray: #afafaf;
+    --light-red: #9f5f5f;
 }
+
+/* FONT */
+
+@font-face {
+    font-family: 'Casino';
+    src: url('font/Casino.ttf') format('truetype');
+}
+
 
 /* RESET */
 
@@ -24,8 +31,9 @@
 
 html,
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--blue);
+    font-family: 'Casino';
+    min-height: 100vh;
+    background: linear-gradient(200deg, var(--light-gray) 0%, var(--light-red) 100%);
 }
 
 body {
@@ -37,31 +45,44 @@ body {
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 6rem;
     color: var(--beige);
     text-transform: uppercase;
     margin: 2rem 0;
     user-select: none;
     text-align: center;
+    letter-spacing: 7px;
 }
 
+/*WALLET*/
+
+.wallet {
+    position: absolute;
+    bottom: 5%;
+    left: 2%;
+    font-size: 1.5rem;
+    color: var(--beige);
+    background-color: var(--red);
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: 2px solid var(--beige);
+}
 
 /* WIN CONDITIONS */
 
 .win-conditions {
     width: 500px;
-    height: 60vh;
     text-align: center;
     padding: 2rem;
-    color: var(--blue);
-    background-color: var(--gray);
+    color: var(--beige);
+    background-color: var(--red);
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position : absolute;
-    top: 20vh;
+    top: 30vh;
     left: -450px;
     z-index: 1000;
 }
@@ -76,20 +97,28 @@ h2 {
     font-size: 2rem;
     margin: 1rem 0;
     text-transform: uppercase;
-    position: absolute;
-    top : 0;
-    left: 50%;
-    transform: translateX(-50%);
+    letter-spacing: 3px;
 }
 
 .rules {
+    width: 100%;
+    margin: 0.5rem 0;
     font-size: 1.1rem;
-    margin: 1rem 0;
     text-align: left;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.rules p {
+    margin: 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.rules img {
+    width: 2rem;
 }
 
 button#close-button {
@@ -131,20 +160,21 @@ button#open-button {
 /* SLOT MACHINE */
 
 .game {
-    width: calc(var(--icon-witdh) * 5.3);
+    /* width: calc(var(--icon-witdh) * 5.3); */
     height: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     margin-bottom: 1rem;
+    transform: translateX(30px);
 }
 
 .machine {
     width: calc(var(--icon-witdh) * 4.5);
     background-color: var(--beige);
     border-radius: 20px;
-    border: 3px solid var(--light-blue);
+    border: 3px solid var(--red);
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -157,7 +187,7 @@ button#open-button {
     width: calc(var(--icon-witdh) * 4);
     height: calc(var(--icon-height) * 3.4);
     padding: calc(var(--icon-height) * 0.2);
-    border: 3px solid var(--light-blue);
+    border: 3px solid var(--red);
     border-radius: 20px;
     background-color: var(--beige);
     display: flex;
@@ -169,7 +199,7 @@ button#open-button {
     width: var(--icon-witdh);
     height: calc(var(--icon-height) * 3);
     background-color: var(--light-beige);
-    background-image: url("symbols.png");
+    background-image: url("symbols/symbols.png");
     background-repeat: repeat-y;
     background-position: 0 0;
     border-radius: 10px;
@@ -191,15 +221,15 @@ button#open-button {
 }
 
 button#spin-button {
-    font-family: monospace;
+    font-family: 'Casino';
     font-size: 1.5rem;
-    color: var(--light-blue);
+    color: var(--red);
     text-transform: uppercase;
     padding: 10px 20px;
     border-radius: 10px;
-    border: 2px solid var(--light-blue);
+    border: 2px solid var(--red);
     background: var(--light-beige);
-    box-shadow: 3px 3px var(--light-blue);
+    box-shadow: 3px 3px var(--red);
     cursor: pointer;
     margin: 35px 0 0; 
 }
@@ -217,16 +247,16 @@ button:active#spin-button {
 
 label {
     font-size: 1.2rem;
-    color: var(--blue);
+    color: var(--red);
     margin-right: 0.5rem;
 }
 
 input {
     font-family: monospace;
     font-size: 1.2rem;
-    color: var(--blue);
+    color: var(--red);
     padding: 5px;
-    border: 2px solid var(--blue);
+    border: 2px solid var(--red);
     border-radius: 5px;
     text-align: center;
     background-color: var(--light-beige);

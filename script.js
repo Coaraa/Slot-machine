@@ -6,7 +6,7 @@ const INDEXES = [0, 0, 0];
 const ICONS_MAP = ["diamond", "cherry", "lemon", "orange", "bar", "clover", "grape", "apple", "seven", "plum"];
 
 let rollings = false;
-var wallet = 11;
+var wallet = 100;
 
 function updateWallet() {
     document.getElementById('wallet').textContent = wallet;
