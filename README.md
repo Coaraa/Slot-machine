@@ -1,4 +1,4 @@
-# Slot Machine Game
+# 🎰 Slot Machine Game
 
 Slot Machine is a simple game that simulates a slot machine. It is built using basic HTML, CSS, and JavaScript. 
 
